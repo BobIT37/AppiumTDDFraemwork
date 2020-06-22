@@ -30,6 +30,7 @@ public class ProductsPage extends MenuPage{
 	 public String getSLBTitle() {
 		 String title = getText(SLBTitle);
 		 System.out.println("title is - "+ title);
+		 
 		 return title;
 	 }
 	 
