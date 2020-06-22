@@ -23,6 +23,7 @@ public class ProductsPage extends MenuPage{
 	  
 	 public String getTitle() {
 		 String title = getText(productTitleTxt);
+		 
 		 System.out.println("product page title is: "+ title);
 		 return title;
 	 }
