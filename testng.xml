@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite parallel="false" name="Suite">
-<Listeners>
 
-<Listener class-name="com.qa.listeners.TestListener"/>
-
-</Listeners>
+ <listeners>
+	<listener class-name="com.qa.listeners.TestListener" />
+ </listeners>
 
  <!--  <test name="Test">
   <parameter name="emulator" value="false"/>
@@ -27,21 +26,21 @@
 
    <test name="Test">
   <parameter name="emulator" value="false"/>
-  <parameter name="platformName" value="Android"/>
-  <parameter name="platformVersion" value="7.0"/>
+  <parameter name="platformName" value="iOS"/>
+  <parameter name="platformVersion" value="13.5"/>
   <parameter name="udid" value="1115fb32abd31d03"/>
-  <parameter name="deviceName" value="bob"/>
+  <parameter name="deviceName" value="iPhone 11"/>
     <classes>
       <class name="com.qa.tests.LoginTests">
-      <!-- <methods>
+      <methods>
       <include name= "invalidUserName"/>
-      </methods> -->
+      </methods>
       </class>
-       <class name="com.qa.tests.ProductTests">
-      <!-- <methods>
-      <include name= "invalidUserName"/>
-      </methods> -->
-      </class>
+      <!--  <class name="com.qa.tests.ProductTests">
+      <methods>
+      <include name= "validateProductOnProductDetailsPage"/>
+      </methods>
+      </class> -->
     </classes>
   </test> Test -->
 </suite> <!-- Suite -->

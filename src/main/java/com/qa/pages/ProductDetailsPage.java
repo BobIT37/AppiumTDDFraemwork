@@ -22,6 +22,11 @@ public class ProductDetailsPage extends MenuPage{
 	@iOSXCUITFindBy (id = "test-BACK TO PRODUCTS")
 	private MobileElement backToProductsBtn;
 	
+//	@AndroidFindBy (accessibility = "test-Price") 
+//	private MobileElement SLBPrice;
+	
+	@iOSXCUITFindBy (id = "test-ADD TO CART") 
+	private MobileElement addToCartBtn;
 	
 	public String getSLBTitle() {
 		String title = getText(SLBTitle);
@@ -33,6 +38,24 @@ public class ProductDetailsPage extends MenuPage{
 		String txt = getText(SLBTxt);
 		System.out.println("txt is - "+ txt);
 		return txt;
+	}
+	
+//	public String getSLBPrice() {
+//		String price = getText(SLBPrice);
+//		System.out.println("price is - "+ price);
+//		return price;
+//	}
+	
+	public String scrollToSLBPriceAndGetSLBPrice() {
+		return getText(scrollToElement());
+	}
+	
+	public void scrollPage() {
+		iOSScrollToElement();
+	}
+	
+	public Boolean isAddToCartBtnDisplayed() {
+		return addToCartBtn.isDisplayed();
 	}
 	
 	public ProductsPage pressBackToProductBtn() {

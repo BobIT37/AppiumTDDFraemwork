@@ -4,6 +4,7 @@ import com.google.common.base.CaseFormat;
 import com.qa.utils.TestUtils;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.FindsByAndroidUIAutomator;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -18,7 +19,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,6 +33,7 @@ public class BaseTest {
 	protected static Properties props;
 	protected static HashMap<String, String> strings = new HashMap<String, String>();
 	protected static String platform;
+	protected static String dateTime;
 	InputStream InputStream;
 	InputStream stringsis;
 	TestUtils utils;
@@ -44,6 +48,8 @@ public class BaseTest {
   @BeforeTest
   public void beforeTest(String emulator, String platformName, String platformVersion, String udid, String deviceName) throws Exception {
 	  
+	  utils = new TestUtils();
+	  dateTime = utils.getDateTime();
 	  platform = platformName;
 	  URL url;
 	  
@@ -56,7 +62,6 @@ public class BaseTest {
 		  props.load(InputStream);
 		  
 		  stringsis = getClass().getClassLoader().getResourceAsStream(xmlFileName);
-		  utils = new TestUtils();
 		  strings = utils.parseStringXML(stringsis);
 		  
 		  DesiredCapabilities cap = new DesiredCapabilities();
@@ -119,6 +124,14 @@ public class BaseTest {
 	  
   }
   
+  public AppiumDriver getDriver() {
+	  return driver;
+  }
+  
+  public String getDateTime() {
+	  return dateTime;
+  }
+  
   public void waitForVisibility(MobileElement e) {
 	  
 	  WebDriverWait wait = new WebDriverWait(driver, TestUtils.WAIT);
@@ -166,6 +179,25 @@ public String getAttribute(MobileElement e, String attribute) {
   public void launchApp() {
 	  ((InteractsWithApps) driver).launchApp();
   }
+  
+  public MobileElement scrollToElement() {	  
+	  return (MobileElement) ((FindsByAndroidUIAutomator) driver).findElementByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector()" + ".scrollable(true)).scrollIntoView("
+						+ "new UiSelector().description(\"test-Price\"));");
+}
+  
+  public void iOSScrollToElement() {
+	  RemoteWebElement element = (RemoteWebElement)driver.findElement(By.name("test-ADD TO CART"));
+	  String elementID = element.getId();
+	  HashMap<String, String> scrollObject = new HashMap<String, String>();
+	  scrollObject.put("element", elementID);
+//	  scrollObject.put("direction", "down");
+//	  scrollObject.put("predicateString", "label == 'ADD TO CART'");
+//	  scrollObject.put("name", "test-ADD TO CART");
+	  scrollObject.put("toVisible", "sdfnjksdnfkld");
+	  driver.executeScript("mobile:scroll", scrollObject);
+  }
+  
 
   @AfterTest
   public void afterTest() {

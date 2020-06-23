@@ -91,8 +91,14 @@ public class ProductTests extends BaseTest{
 		  String SLBTitle = productDetailsPage.getSLBTitle();
 		  sa.assertEquals(SLBTitle, strings.get("product_details_page_slb_title"));
 		  
-		  String SLBPrice = productDetailsPage.getSLBTxt();
-		  sa.assertEquals(SLBPrice, strings.get("product_details_page_slb_txt"));
+		  String SLBTxt = productDetailsPage.getSLBTxt();
+		  sa.assertEquals(SLBTxt, strings.get("product_details_page_slb_txt"));
+		  
+//		  String SLBPrice = productDetailsPage.scrollToSLBPriceAndGetSLBPrice();
+//		  sa.assertEquals(SLBPrice, strings.get("product_details_page_slb_price"));
+		  
+		  productDetailsPage.scrollPage();
+		  sa.assertTrue(productDetailsPage.isAddToCartBtnDisplayed());
 		  
 		  productsPage = productDetailsPage.pressBackToProductBtn();
 		  

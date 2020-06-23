@@ -63,7 +63,7 @@ public class LoginTests extends BaseTest{
 			  loginPage.enterPassword(loginUser.getJSONObject("invalidUser").getString("password"));
 			  loginPage.pressLoginBtn();
 			  
-			  String actualErrTxt = loginPage.getErrTxt();
+			  String actualErrTxt = loginPage.getErrTxt() + "ffhdd";
 			  String expectedErrTxt = strings.get("err_invalid_username_or_password");
 			  System.out.println("actual error text "+ actualErrTxt+ "\n"+ "expected error txt - "+ expectedErrTxt);
 			  
