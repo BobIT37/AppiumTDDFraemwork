@@ -26,15 +26,15 @@
 
    <test name="Test">
   <parameter name="emulator" value="false"/>
-  <parameter name="platformName" value="iOS"/>
-  <parameter name="platformVersion" value="13.5"/>
+  <parameter name="platformName" value="Android"/>
+  <parameter name="platformVersion" value="7.0"/>
   <parameter name="udid" value="1115fb32abd31d03"/>
-  <parameter name="deviceName" value="iPhone 11"/>
+  <parameter name="deviceName" value="bob"/>
     <classes>
       <class name="com.qa.tests.LoginTests">
-      <methods>
+      <!-- <methods>
       <include name= "invalidUserName"/>
-      </methods>
+      </methods> -->
       </class>
       <!--  <class name="com.qa.tests.ProductTests">
       <methods>

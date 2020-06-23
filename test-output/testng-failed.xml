@@ -17,9 +17,11 @@
           <include name="invalidUserName"/>
           <include name="beforeMethod"/>
           <include name="beforeTest"/>
+          <include name="afterMethod"/>
           <include name="beforeClass"/>
           <include name="afterMethod"/>
           <include name="afterClass"/>
+          <include name="beforeMethod"/>
         </methods>
       </class> <!-- com.qa.tests.LoginTests -->
     </classes>

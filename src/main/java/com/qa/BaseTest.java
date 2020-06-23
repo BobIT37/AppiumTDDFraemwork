@@ -10,13 +10,18 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.screenrecording.CanRecordScreen;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-
+import org.apache.commons.codec.binary.Base64;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
@@ -25,7 +30,10 @@ import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
  
@@ -42,6 +50,44 @@ public class BaseTest {
 	public BaseTest() {
 		
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+	}
+	
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		System.out.println("super before method");
+		((CanRecordScreen) driver).startRecordingScreen();
+	}
+	
+	@AfterMethod
+	public synchronized void afterMethod(ITestResult result) throws Exception {
+		System.out.println("super after method");
+		String media = ((CanRecordScreen) getDriver()).stopRecordingScreen();
+		
+		Map <String, String> params = result.getTestContext().getCurrentXmlTest().getAllParameters();		
+		String dirPath = "videos" + File.separator + params.get("platformName") + "_" + params.get("deviceName") 
+		+ File.separator + getDateTime() + File.separator + result.getTestClass().getRealClass().getSimpleName();
+		
+		File videoDir = new File(dirPath);
+		
+		synchronized(videoDir){
+			if(!videoDir.exists()) {
+				videoDir.mkdirs();
+			}	
+		}
+		FileOutputStream stream = null;
+		try {
+			stream = new FileOutputStream(videoDir + File.separator + result.getName() + ".mp4");
+			stream.write(Base64.decodeBase64(media));
+			stream.close();
+			//utils.log().info("video path: " + videoDir + File.separator + result.getName() + ".mp4");
+		} catch (Exception e) {
+			//utils.log().error("error during video capture" + e.toString());
+		} finally {
+			if(stream != null) {
+				stream.close();
+			}
+		}		
 	}
 	
   @Parameters({"emulator", "platformName", "platformVersion", "udid", "deviceName"})	

@@ -20,6 +20,8 @@ public class TestListener implements ITestListener{
 	
 	TestUtils utils = new TestUtils();
 	
+	
+	
 	public void onTestFailure(ITestResult result) {
 		if(result.getThrowable() != null) {
 			  StringWriter sw = new StringWriter();

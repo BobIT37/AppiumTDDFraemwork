@@ -50,12 +50,14 @@ public class LoginTests extends BaseTest{
 	  }	
 	  @BeforeMethod
 	  public void beforeMethod(Method m) {
+		  System.out.println("loginTest before method");
 		  loginPage = new LoginPage();
 		  System.out.println("\n"+ "******* starting test: "+ m.getName()+ " ************"+ "\n");
 	  }
 
 	  @AfterMethod
 	  public void afterMethod() {
+		  System.out.println("loginTest after method");
 	  }
 	  @Test
 	  public void invalidUserName() {
@@ -63,7 +65,7 @@ public class LoginTests extends BaseTest{
 			  loginPage.enterPassword(loginUser.getJSONObject("invalidUser").getString("password"));
 			  loginPage.pressLoginBtn();
 			  
-			  String actualErrTxt = loginPage.getErrTxt() + "ffhdd";
+			  String actualErrTxt = loginPage.getErrTxt();
 			  String expectedErrTxt = strings.get("err_invalid_username_or_password");
 			  System.out.println("actual error text "+ actualErrTxt+ "\n"+ "expected error txt - "+ expectedErrTxt);
 			  
