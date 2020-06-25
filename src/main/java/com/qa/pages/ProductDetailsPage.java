@@ -1,12 +1,14 @@
 package com.qa.pages;
 
 import com.qa.MenuPage;
+import com.qa.utils.TestUtils;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class ProductDetailsPage extends MenuPage{
+	TestUtils utils = new TestUtils();
 	
 	@AndroidFindBy (xpath = "//android.view.ViewGroup[@content-desc=\"test-Description\"]/android.widget.TextView[1]\n" + 
 			"")
@@ -25,8 +27,7 @@ public class ProductDetailsPage extends MenuPage{
 //	@AndroidFindBy (accessibility = "test-Price") 
 //	private MobileElement SLBPrice;
 	
-	@iOSXCUITFindBy (id = "test-ADD TO CART") 
-	private MobileElement addToCartBtn;
+	@iOSXCUITFindBy (id = "test-ADD TO CART") private MobileElement addToCartBtn; 
 	
 	public String getSLBTitle() {
 		String title = getText(SLBTitle);

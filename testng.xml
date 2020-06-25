@@ -1,46 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite parallel="false" name="Suite">
+<suite name="Suite" parallel="tests">
 
- <listeners>
-	<listener class-name="com.qa.listeners.TestListener" />
- </listeners>
+<test name="Pixel_2">
+		<listeners>
+			<listener class-name="com.qa.listeners.TestListener" />
+		</listeners>
+		<parameter name="emulator" value="true" />
+		<parameter name="platformName" value="Android" />
+		<parameter name="udid" value="1115fb32abd31d03" />
+		<parameter name="deviceName" value="Pixel_2" />
+		<parameter name="systemPort" value="10000" />
+		<parameter name="chromeDriverPort" value="11000" />
+		<classes>
+			<class name="com.qa.tests.LoginTests"></class>
+			<class name="com.qa.tests.ProductTests"></class>
+		</classes>
+	</test>
+	<test name="iPhone11">
+		<listeners>
+			<listener class-name="com.qa.listeners.TestListener" />
+		</listeners>
+		<parameter name="platformName" value="iOS" />
+		<parameter name="udid" value="D9B2EF26-6BFD-45D3-B1B6-CA243600FF10" />
+		<parameter name="deviceName" value="iPhone 11" />
+		<parameter name="wdaLocalPort" value="10001" />
+		<parameter name="webkitDebugProxyPort" value="11001" />
+		<classes>
+			<class name="com.qa.tests.LoginTests"></class>
+			<class name="com.qa.tests.ProductTests"></class>
+		</classes>
+	</test>
 
- <!--  <test name="Test">
-  <parameter name="emulator" value="false"/>
-  <parameter name="platformName" value="iOS"/>
-  <parameter name="platformVersion" value="13.5"/>
-  <parameter name="deviceName" value="iPhone 11"/>
-    <classes>
-      <class name="com.qa.tests.LoginTests">
-      <methods>
-      <include name= "invalidUserName"/>
-      </methods>
-      </class>
-      <class name="com.qa.tests.ProductTests">
-      <methods>
-      <include name= "invalidUserName"/>
-      </methods>
-      </class>
-    </classes>
-  </test>  -->
-
-   <test name="Test">
-  <parameter name="emulator" value="false"/>
-  <parameter name="platformName" value="Android"/>
-  <parameter name="platformVersion" value="7.0"/>
-  <parameter name="udid" value="1115fb32abd31d03"/>
-  <parameter name="deviceName" value="bob"/>
-    <classes>
-      <class name="com.qa.tests.LoginTests">
-      <!-- <methods>
-      <include name= "invalidUserName"/>
-      </methods> -->
-      </class>
-      <!--  <class name="com.qa.tests.ProductTests">
-      <methods>
-      <include name= "validateProductOnProductDetailsPage"/>
-      </methods>
-      </class> -->
-    </classes>
-  </test> Test -->
 </suite> <!-- Suite -->

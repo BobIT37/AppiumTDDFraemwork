@@ -1,6 +1,7 @@
 package com.qa.pages;
 
 import com.qa.BaseTest;
+import com.qa.utils.TestUtils;
 
 import io.appium.java_client.MobileElement;
 
@@ -8,6 +9,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class LoginPage extends BaseTest{
+	TestUtils utils = new TestUtils();
 	
 	@AndroidFindBy(accessibility = "test-Username") 
 	@iOSXCUITFindBy (id = "test-Username")
@@ -25,7 +27,9 @@ public class LoginPage extends BaseTest{
 	@iOSXCUITFindBy (xpath = "//XCUIElementTypeOther[@name=\"test-Error message\"]/child::XCUIElementTypeStaticText")
 	private MobileElement errTxt;
 	  
-	 public LoginPage enterUserName(String username) {
+	
+	 
+	public LoginPage enterUserName(String username) {
 		 clear(usernameTxtFld);
 		 System.out.println("login user with "+ username);
 		 sendKeys(usernameTxtFld, username);
@@ -56,5 +60,4 @@ public class LoginPage extends BaseTest{
 		 System.out.println("error text is - "+ err);
 		 return err;
 	 }
-	 
 }
